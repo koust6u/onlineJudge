@@ -1,32 +1,31 @@
-#include<iostream>
-#include<algorithm>
-#include<vector>
+#include <iostream>
+
 using namespace std;
- 
-int dp[101][100001];
-int w[101];
-int v[101];
-int n, k;
- 
-int main()
-{
-    cin >> n >> k;
-    for (int i = 1; i <= n; i++)
-    {
-        cin >> w[i] >> v[i];
-    }
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= k; j++)
-        {
-            //물건을 넣을 수 있는 경우
-            if (j >= w[i])
-                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - w[i]] + v[i]);
-            //물건을 넣을 수 없는 경우
-            else
-                dp[i][j] = dp[i - 1][j];
+
+int max(int A, int B){ if(A>B) return A; return B;}
+int main(){
+    int W[101] = {0,};
+    int V[101] = {0, };
+    int number, weight;
+    cin >> number >> weight;
+    int **DP =new int* [number+1];
+    for(int i = 0; i <=number; i++){;
+        DP[i] = new int[100000];
+        for(int j= 0; j< 100000; j++){
+            DP[i][j] = 0;
         }
     }
-    cout << dp[n][k];
-    return 0;
+    for(int i =1; i <=number; i++){
+        cin >> W[i] >> V[i];
+    }
+
+    for(int i = 1; i < number+1; i++){
+        for(int j= 1; j < weight+1; j++){
+            if(j >= W[i])
+                DP[i][j] = max(DP[i-1][j], DP[i-1][j-W[i]] + V[i]);
+            else
+                DP[i][j] = DP[i-1][j];
+        }
+    }
+    cout << DP[number][weight];
 }
