@@ -11,7 +11,6 @@ int main(){
     for(int i = 3; i <= count; i++){
         DP[i] = (DP[i-1]+ DP[i-2])%15746;
     }
-
-    auto temp = DP[count];
-    cout << temp;
+    
+    cout << DP[count];
 }
