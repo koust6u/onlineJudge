@@ -2,18 +2,16 @@
 using namespace std;
 
 int main(){
-    int weight;
-    cin >> weight;
-    int count = 0;
-    while(weight %5 != 0){
-        weight -= 3;
-        count++;
-        if(weight < 3 && weight != 0){
-            count = -1;
-            break;
+    int N, result = 0;
+    cin >> N;
+    while(N >= 0){
+        if(N % 5 == 0){
+            result += N/5;
+            cout << result << endl;
+            return 0;
         }
+        N -=3;
+        result++;
     }
-    count += weight/5;
-    cout << count;
-
+    cout << -1 << endl;
 }
