@@ -21,15 +21,6 @@ map<char,string> makeMap(){
     return m;
 }
 
-void parsing(string &s){
-    while(true){
-        if(s[0] == '1'){
-            return;
-        }
-        s.erase(0,1);
-
-    }
-}
 int main(){
     ios_base :: sync_with_stdio(true);
     cin.tie(NULL);
