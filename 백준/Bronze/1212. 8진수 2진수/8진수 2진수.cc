@@ -1,47 +1,71 @@
 #include <iostream>
-#include <string>
+#include <vector>
+#include <map>
+#include <cstdio>
+#include <queue>
 using namespace std;
-int main() {
-    string eight;
-    cin >> eight;
-    for (int i = 0; i < eight.size(); i++)
-    {
-        if (eight[i] == '0')
-        {
-            if (i==0)
-                cout << '0';
-            else
-                cout << "000";
-        }
-        else if (eight[i] == '1')
-        {
-            if (i == 0)
-                cout << "1";
-            else
-                cout << "001";
-        }
-        else if (eight[i] == '2')
-        {
-            if (i == 0)
-                cout << "10";
-            else
-                cout << "010";
+/**
+* 8진수 -> 2진수 변환
+*/
 
+map<char,string> makeMap(){
+    map<char,string> m;
+    m.emplace('0',"000");
+    m.emplace('1', "001");
+    m.emplace('2', "010");
+    m.emplace('3', "011");
+    m.emplace('4', "100");
+    m.emplace('5',"101");
+    m.emplace('6', "110");
+    m.emplace('7', "111");
+    return m;
+}
+
+void parsing(string &s){
+    while(true){
+        if(s[0] == '1'){
+            return;
         }
-        else if (eight[i] == '3')
-        {
-            if (i==0)
-                cout << "11";
-            else
-                cout << "011";
-        }
-        else if (eight[i] == '4')
-            cout << "100";
-        else if (eight[i] == '5')
-            cout << "101";
-        else if (eight[i] == '6')
-            cout << "110";
-        else if (eight[i] == '7')
-            cout << "111";
+        s.erase(0,1);
+
     }
+}
+int main(){
+    ios_base :: sync_with_stdio(true);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    bool flag = true;
+    string octal, binary;
+    cin >> octal;
+    if(octal.length() == 1 && octal[0] == '0'){
+        cout << "0";
+        return 0;
+    }
+    map<char, string> table= makeMap();
+    for(auto& i: octal){
+        if(!flag){
+            binary.append(table.at(i));
+        }
+        else{
+            if(i == '1')
+                binary.append("1");
+            else if(i == '2')
+                binary.append("10");
+            else if(i == '3')
+                binary.append("11");
+            else if(i =='4')
+                binary.append("100");
+            else if(i == '5')
+                binary.append("101");
+            else if(i == '6')
+                binary.append("110");
+            else if(i == '7')
+                binary.append("111");
+            else
+                continue;
+            flag= false;
+        }
+
+    }
+    cout << binary;
 }
