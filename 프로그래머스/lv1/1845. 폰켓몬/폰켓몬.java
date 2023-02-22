@@ -5,6 +5,6 @@ class Solution {
         for(int i: nums){
             s.add(i);
         }
-        return (nums.length / 2 > s.size()) ? s.size() : nums.length / 2;
+        return Math.min(s.size(), nums.length/2);
     }
 }
