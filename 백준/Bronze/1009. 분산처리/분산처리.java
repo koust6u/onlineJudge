@@ -18,7 +18,8 @@ class Main{
                 r = (a*r)%10;
             }
             if(r == 0) r = 10;
-            System.out.println(r);
+            bw.write(r + "\n");
+            bw.flush();
         }
 
         bw.close();
